@@ -1,0 +1,34 @@
+<section class="card" style="max-width: 600px; margin: 0 auto;">
+  <h2 class="card-title">Registrar Nueva Mascota</h2>
+  <form (ngSubmit)="onCrearAnimal()" class="form-grid">
+    <div class="input-group">
+      <label>Nombre</label>
+      <input type="text" [(ngModel)]="nuevoAnimal.nombre" name="nombre" placeholder="Ej. Rex" required />
+    </div>
+    <div class="input-group">
+      <label>Especie</label>
+      <input type="text" [(ngModel)]="nuevoAnimal.especie" name="especie" placeholder="Ej. Perro" required />
+    </div>
+    <div class="input-group">
+      <label>Raza</label>
+      <input type="text" [(ngModel)]="nuevoAnimal.raza" name="raza" placeholder="Ej. Pastor Alemán" required />
+    </div>
+    <div class="input-group">
+      <label>Edad (Años)</label>
+      <input type="number" [(ngModel)]="nuevoAnimal.edad" name="edad" placeholder="Ej. 3" min="0" required />
+    </div>
+    <div class="input-group">
+      <label>Sexo</label>
+      <select [(ngModel)]="nuevoAnimal.sexo" name="sexo" required>
+        <option value="" disabled selected>Selecciona Sexo</option>
+        <option value="Macho">Macho</option>
+        <option value="Hembra">Hembra</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label>Peso (kg)</label>
+      <input type="number" step="0.1" [(ngModel)]="nuevoAnimal.peso" name="peso" placeholder="Ej. 12.5" min="0" required />
+    </div>
+    <button type="submit" class="btn-full">Guardar y Continuar</button>
+  </form>
+</section>

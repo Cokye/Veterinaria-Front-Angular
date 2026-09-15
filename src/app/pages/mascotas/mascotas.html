@@ -1,0 +1,30 @@
+<section>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <h2 class="card-title" style="margin: 0;">Mis Mascotas Registradas</h2>
+  </div>
+
+  <ul class="items-grid">
+    @for (animal of misAnimales(); track animal.id) {
+      <li class="item-card">
+        <span class="item-badge">{{ animal.especie }}</span>
+        <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem;">{{ animal.nombre }}</h4>
+        <p style="margin: 0.25rem 0; font-size: 0.875rem; color: var(--text-muted);">
+          <strong>Raza:</strong> {{ animal.raza }}
+        </p>
+        <p style="margin: 0.25rem 0; font-size: 0.875rem; color: var(--text-muted);">
+          <strong>Sexo:</strong> {{ animal.sexo }} | <strong>Edad:</strong> {{ animal.edad }} años
+        </p>
+        <p style="margin: 0.25rem 0; font-size: 0.875rem; color: var(--text-muted);">
+          <strong>Peso:</strong> {{ animal.peso }} kg
+        </p>
+        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: var(--primary);">
+          <strong>Dueño:</strong> {{ obtenerNombreDueno(animal.usuario_id) }} 
+        </p>
+      </li>
+    } @empty {
+      <div class="empty-state" style="grid-column: 1 / -1;">
+        No tienes mascotas registradas aún.
+      </div>
+    }
+  </ul>
+</section>

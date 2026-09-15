@@ -1,0 +1,26 @@
+<div class="card" style="max-width: 400px; margin: 4rem auto;">
+  <h2 class="card-title">Acceso al Sistema</h2>
+  <form (submit)="$event.preventDefault(); onLogin()">
+    <div class="input-group" style="margin-bottom: 1rem;">
+      <label>Correo Electrónico</label>
+      <input type="email" [(ngModel)]="credenciales.email" name="email" placeholder="ejemplo@correo.cl" required />
+    </div>
+    <div class="input-group" style="margin-bottom: 1.5rem;">
+      <label>Contraseña</label>
+      <input type="password" [(ngModel)]="credenciales.password" name="password" placeholder="••••••••" required />
+    </div>
+    <button type="submit" style="width: 100%;">Ingresar</button>
+
+    <div style="margin-top: 0.5rem;">
+      <p>
+        <strong>Usuarios de ejemplo:</strong><br>
+        ana&#64;ejemplo.cl - 1234 <br>
+        luis&#64;ejemplo.cl - 1234
+      </p>
+    </div>
+  </form>
+  
+  @if (errorLogin()) {
+    <div class="error-banner">{{ errorLogin() }}</div>
+  }
+</div>

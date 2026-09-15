@@ -1,0 +1,27 @@
+@if (authService.usuarioActual()) {
+  <header class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">
+        <span class="brand-icon">🐾</span>
+        <span class="brand-title">VeterinariaApp</span>
+      </div>
+
+      <nav class="navbar-menu">
+        <a routerLink="/mascotas" routerLinkActive="active" class="nav-link">Mis Mascotas</a>
+        <a routerLink="/registro" routerLinkActive="active" class="nav-link">Registrar Mascota</a>
+      </nav>
+
+      <div class="navbar-user">
+        <div class="user-info">
+          <span class="user-name">{{ authService.usuarioActual()?.nombre }}</span>
+          <span class="user-role"> {{ obtenerRol(authService.usuarioActual()?.rol_id) }}</span>
+        </div>
+        <button class="btn-logout" (click)="onLogout()">Cerrar Sesión</button>
+      </div>
+    </div>
+  </header>
+}
+
+<main class="main-container">
+  <router-outlet></router-outlet>
+</main>
