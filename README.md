@@ -45,7 +45,7 @@ Cliente web SPA desarrollado en **Angular** para el módulo de autenticación y 
 
 ### 1. Clonar el repositorio
 ```bash
-git clone [https://github.com/TU_USUARIO/TU_REPOSITORIO_ANGULAR.git](https://github.com/TU_USUARIO/TU_REPOSITORIO_ANGULAR.git)
+git clone https://github.com/Cokye/Veterinaria-Front-Angular
 cd TU_REPOSITORIO_ANGULAR
 ```
 
