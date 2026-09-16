@@ -1,64 +1,45 @@
-# 🏥 Sistema Clínico Integral
+# 🏥 Frontend - Portal de Convenios Clínicos (Angular)
 
-[![Java](https://img.shields.io/badge/Java-17+-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
-[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
-[![Oracle](https://img.shields.io/badge/Oracle_Database-F80000?style=for-the-badge&logo=oracle&logoColor=white)](https://www.oracle.com/database/)
-[![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/)
+[![Angular](https://img.shields.io/badge/Angular-17+-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![RxJS](https://img.shields.io/badge/RxJS-B7178C?style=for-the-badge&logo=reactivex&logoColor=white)](https://rxjs.dev/)
 
-Aplicación web full-stack diseñada para la gestión clínica. La solución integra un backend desarrollado en **Spring Boot**, persistencia relacional empresarial en **Oracle Database** y un cliente web interactivo construido en **Angular**.
+Cliente web SPA desarrollado en **Angular** para el sistema clínico integral. Este módulo gestiona el flujo de autenticación de usuarios y la adquisición de planes y convenios de salud con descuentos tarifarios.
+
+> **Nota:** Este repositorio contiene únicamente la interfaz de usuario. Consume la API REST expuesta por el [Backend Clínico en Spring Boot](https://github.com/Cokye/Backend-Clinica-React-angular).
 
 ---
 
-## 📌 Arquitectura del Proyecto
+## 📌 Funcionalidades Principales
 
-El sistema opera bajo un esquema desacoplado cliente-servidor mediante servicios web RESTful:
-
-```
-[ Cliente Angular ] <--- (REST / JSON) ---> [ Backend Spring Boot ] <--- (JDBC/JPA) ---> [ Oracle Database ]
-```
-
-* **Frontend (`frontend-angular`):** Interfaz SPA responsable de la interacción con el usuario, control de formularios reactivos y consumo de las APIs del sistema.
-* **Backend (`backend-spring`):** Servidor API REST encargado de las reglas de negocio, validaciones, seguridad y transaccionalidad.
-* **Base de Datos (`Oracle DB`):** Almacenamiento relacional para entidades, tablas intermedias, integridad referencial y secuencias.
+* **Autenticación y Seguridad:** Módulo de Login con validación reactiva y almacenamiento de sesión/tokens.
+* **Catálogo de Convenios:** Visualización de convenios disponibles, vigencias y porcentajes de descuento.
+* **Adquisición y Contratación:** Registro de convenios contratados por el usuario para rebajas en atenciones médicas.
+* **Guards de Rutas:** Protección de vistas privadas según el estado de la sesión.
 
 ---
 
 ## 🛠️ Stack Tecnológico y Dependencias
 
-### ⚙️ Backend (Spring Boot)
-* **Lenguaje:** Java 17+
-* **Framework:** Spring Boot 3.x
-* **Dependencias principales:**
-  * `spring-boot-starter-web`: Creación de endpoints REST y manejo de solicitudes HTTP.
-  * `spring-boot-starter-data-jpa`: Capa de persistencia con Hibernate ORM.
-  * `com.oracle.database.jdbc:ojdbc11`: Driver JDBC oficial para conexión a Oracle Database.
-  * `spring-boot-starter-validation`: Validación de payloads (`@NotNull`, `@Size`, `@Email`).
-  * `spring-boot-starter-security` / `jjwt`: Control de autenticación basada en tokens o sesiones.
-  * `lombok`: Generación automática de getters, setters, constructores y builders.
-
-### 🅰️ Frontend (Angular)
-* **Framework:** Angular 17+ / 18+
+* **Framework:** Angular (v17+)
 * **Lenguaje:** TypeScript
 * **Dependencias principales:**
-  * `@angular/common/http`: Comunicación HTTP con el backend mediante `HttpClient`.
-  * `@angular/forms`: Gestión de formularios reactivos (`ReactiveFormsModule`).
-  * `@angular/router`: Navegación interna y protección de rutas vía Guards.
-  * `rxjs`: Control de eventos asíncronos y operadores reactivos.
-
-### 🗄️ Base de Datos (Oracle)
-* **Motor:** Oracle Database (Free / XE / Enterprise)
-* **Características:** Esquema relacional estructurado, claves foráneas, restricciones de unicidad e índices para optimización de consultas.
+  * `@angular/common/http`: Comunicación cliente-servidor mediante `HttpClient`.
+  * `@angular/forms`: Implementación de formularios reactivos (`ReactiveFormsModule`).
+  * `@angular/router`: Configuración de rutas internas y navegación asistida por `RouterLink` y Guards.
+  * `rxjs`: Manejo declarativo de flujos de datos asíncronos y operadores reactivos.
 
 ---
 
 ## 📋 Requisitos Previos
 
-* **Java Development Kit (JDK):** Versión 17 o superior.
-* **Node.js y npm:** Node.js LTS (v18.x o v20.x).
-* **Angular CLI:** Instalable con `npm install -g @angular/cli`.
-* **Oracle Database:** Instancia activa (local, contenedor Docker o nube).
-* **Gestor de compilación:** Maven (incluido típicamente como `./mvnw`).
+* **Node.js:** Versión 18.x o 20.x (LTS recomendada).
+* **npm:** Gestor de paquetes incluido con Node.js.
+* **Angular CLI:** Instalado globalmente mediante:
+  ```bash
+  npm install -g @angular/cli
+  ```
+* **Backend:** Instancia activa del servicio REST en ejecución (puerto por defecto `8080`).
 
 ---
 
@@ -66,52 +47,27 @@ El sistema opera bajo un esquema desacoplado cliente-servidor mediante servicios
 
 ### 1. Clonar el repositorio
 ```bash
-git clone [https://github.com/TU_USUARIO/TU_REPOSITORIO.git](https://github.com/TU_USUARIO/TU_REPOSITORIO.git)
-cd TU_REPOSITORIO
+git clone [https://github.com/TU_USUARIO/TU_REPOSITORIO_ANGULAR.git](https://github.com/TU_USUARIO/TU_REPOSITORIO_ANGULAR.git)
+cd TU_REPOSITORIO_ANGULAR
 ```
 
----
-
-### 2. Configurar la Base de Datos (Oracle)
-Asegúrate de tener un contenedor o servicio de Oracle en ejecución (por ejemplo, Oracle Database Free):
-
+### 2. Instalar dependencias
 ```bash
-docker run -d --name oracle-db -p 1521:1521 -e ORACLE_PASSWORD=tu_password [container-registry.oracle.com/database/free:latest](https://container-registry.oracle.com/database/free:latest)
-```
-
-En `backend/src/main/resources/application.properties`, define la conexión:
-
-```properties
-spring.datasource.url=jdbc:oracle:thin:@localhost:1521/FREEPDB1
-spring.datasource.username=tu_usuario
-spring.datasource.password=tu_password
-spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
-
-spring.jpa.database-platform=org.hibernate.dialect.OracleDialect
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-```
-
----
-
-### 3. Backend (Spring Boot)
-Ingresa a la carpeta del backend y ejecuta el proyecto:
-
-```bash
-cd backend
-./mvnw clean spring-boot:run
-```
-
-* API disponible en: `http://localhost:8080`
-
----
-
-### 4. Frontend (Angular)
-Ingresa a la carpeta del cliente web, instala las dependencias y corre el servidor de desarrollo:
-
-```bash
-cd ../frontend
 npm install
+```
+
+### 3. Configuración del Endpoint Backend
+Asegúrate de apuntar a la URL de la API (por defecto en `src/environments/environment.ts` o variables de entorno correspondientes):
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080/api'
+};
+```
+
+### 4. Ejecutar servidor de desarrollo
+```bash
 ng serve
 ```
 
@@ -119,29 +75,13 @@ ng serve
 
 ---
 
-## 🗄️ Estructura del Modelo Relacional
+## 🔗 Integración con el Sistema
 
-Principales tablas administradas en Oracle Database:
-
-* `USUARIOS`: Almacena el personal médico, administradores y pacientes con sus credenciales y roles.
-* `PACIENTES`: Ficha médica, datos personales y antecedentes clínicos.
-* `MEDICOS`: Especialistas, especialidades asociadas y asignación horaria.
-* `CITAS_MEDICAS`: Reservas agendadas, estado de atención, fecha, hora y relación paciente-médico.
-* `HISTORIAL_CLINICO`: Entradas clínicas, diagnósticos, recetas y observaciones emitidas por los médicos.
+```
+[ Angular Frontend (:4200) ] ---> (HTTP REST / JSON) ---> [ Backend Spring Boot (:8080) ]
+```
 
 ---
-
-## 📡 Endpoints Principales
-
-| Método | Endpoint | Descripción |
-| :--- | :--- | :--- |
-| `POST` | `/api/auth/login` | Autenticación de usuarios y entrega de credenciales |
-| `GET` | `/api/pacientes` | Obtiene el listado completo de pacientes |
-| `POST` | `/api/pacientes` | Registra una nueva ficha de paciente |
-| `GET` | `/api/citas` | Consulta de citas médicas disponibles o asignadas |
-| `POST` | `/api/citas` | Agenda una nueva cita en el sistema |
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ## 👤 Autor
 
