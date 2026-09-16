@@ -6,7 +6,7 @@
 [![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-Aplicación web full-stack diseñada para la gestión clínica, atención de pacientes y control administrativo. La solución integra un backend desarrollado en **Spring Boot**, persistencia relacional empresarial en **Oracle Database** y un cliente web interactivo construido en **Angular**.
+Aplicación web full-stack diseñada para la gestión clínica. La solución integra un backend desarrollado en **Spring Boot**, persistencia relacional empresarial en **Oracle Database** y un cliente web interactivo construido en **Angular**.
 
 ---
 
