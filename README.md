@@ -141,4 +141,8 @@ Principales tablas administradas en Oracle Database:
 | `GET` | `/api/citas` | Consulta de citas médicas disponibles o asignadas |
 | `POST` | `/api/citas` | Agenda una nueva cita en el sistema |
 
----
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## 👤 Autor
+
+* Desarrollado por **Felipe** ([@Cokye](https://github.com/Cokye))
