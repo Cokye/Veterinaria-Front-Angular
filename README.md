@@ -1,21 +1,20 @@
-# 🏥 Frontend - Portal de Convenios Clínicos (Angular)
+# 🅰️ Frontend - Gestión de Usuarios (Angular)
 
 [![Angular](https://img.shields.io/badge/Angular-17+-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![RxJS](https://img.shields.io/badge/RxJS-B7178C?style=for-the-badge&logo=reactivex&logoColor=white)](https://rxjs.dev/)
 
-Cliente web SPA desarrollado en **Angular** para el sistema clínico integral. Este módulo gestiona el flujo de autenticación de usuarios y la adquisición de planes y convenios de salud con descuentos tarifarios.
+Cliente web SPA desarrollado en **Angular** para el módulo de autenticación y visualización de usuarios. La aplicación implementa un formulario de login y una vista protegida que lista los usuarios registrados consumiendo una API REST centralizada.
 
-> **Nota:** Este repositorio contiene únicamente la interfaz de usuario. Consume la API REST expuesta por el [Backend Clínico en Spring Boot](https://github.com/Cokye/Backend-Clinica-React-angular).
+> **Nota:** Este repositorio contiene únicamente el código del cliente frontend. Requiere el servicio backend en ejecución: [Backend Spring Boot](https://github.com/Cokye/Backend-Clinica-React-angular).
 
 ---
 
-## 📌 Funcionalidades Principales
+## 📌 Funcionalidades
 
-* **Autenticación y Seguridad:** Módulo de Login con validación reactiva y almacenamiento de sesión/tokens.
-* **Catálogo de Convenios:** Visualización de convenios disponibles, vigencias y porcentajes de descuento.
-* **Adquisición y Contratación:** Registro de convenios contratados por el usuario para rebajas en atenciones médicas.
-* **Guards de Rutas:** Protección de vistas privadas según el estado de la sesión.
+* **Autenticación (Login):** Formulario reactivo con validación de credenciales.
+* **Control de Sesión:** Manejo de estado de autenticación y protección de vistas.
+* **Listado de Usuarios:** Tabla interactiva que consulta y renderiza la lista de usuarios obtenida desde la API REST.
 
 ---
 
@@ -24,22 +23,21 @@ Cliente web SPA desarrollado en **Angular** para el sistema clínico integral. E
 * **Framework:** Angular (v17+)
 * **Lenguaje:** TypeScript
 * **Dependencias principales:**
-  * `@angular/common/http`: Comunicación cliente-servidor mediante `HttpClient`.
-  * `@angular/forms`: Implementación de formularios reactivos (`ReactiveFormsModule`).
-  * `@angular/router`: Configuración de rutas internas y navegación asistida por `RouterLink` y Guards.
-  * `rxjs`: Manejo declarativo de flujos de datos asíncronos y operadores reactivos.
+  * `@angular/common/http`: Cliente `HttpClient` para realizar peticiones REST al backend.
+  * `@angular/forms`: Formularios reactivos (`ReactiveFormsModule`) para la captura y validación del login.
+  * `@angular/router`: Enrutador para alternar entre la vista de login y el dashboard/listado.
+  * `rxjs`: Manejo de flujos de datos asíncronos (`Observables`).
 
 ---
 
 ## 📋 Requisitos Previos
 
-* **Node.js:** Versión 18.x o 20.x (LTS recomendada).
-* **npm:** Gestor de paquetes incluido con Node.js.
-* **Angular CLI:** Instalado globalmente mediante:
+* **Node.js:** Versión 18.x o 20.x (LTS) y `npm`.
+* **Angular CLI:** Instalado globalmente:
   ```bash
   npm install -g @angular/cli
   ```
-* **Backend:** Instancia activa del servicio REST en ejecución (puerto por defecto `8080`).
+* **Backend:** API Spring Boot en ejecución (puerto `8080`).
 
 ---
 
@@ -56,8 +54,8 @@ cd TU_REPOSITORIO_ANGULAR
 npm install
 ```
 
-### 3. Configuración del Endpoint Backend
-Asegúrate de apuntar a la URL de la API (por defecto en `src/environments/environment.ts` o variables de entorno correspondientes):
+### 3. Configurar Endpoint Backend
+Asegúrate de que la URL apunte al backend (en `src/environments/environment.ts` o servicio de conexión):
 
 ```typescript
 export const environment = {
@@ -66,19 +64,20 @@ export const environment = {
 };
 ```
 
-### 4. Ejecutar servidor de desarrollo
+### 4. Ejecutar la aplicación
 ```bash
 ng serve
 ```
 
-* Aplicación disponible en: `http://localhost:4200`
+* Disponible en: `http://localhost:4200`
 
 ---
 
-## 🔗 Integración con el Sistema
+## 🔗 Integración
 
 ```
-[ Angular Frontend (:4200) ] ---> (HTTP REST / JSON) ---> [ Backend Spring Boot (:8080) ]
+[ Angular (:4200) ] ---> POST /api/auth/login  ---> [ Spring Boot API (:8080) ]
+[ Angular (:4200) ] ---> GET  /api/usuarios    ---> [ Spring Boot API (:8080) ]
 ```
 
 ---
